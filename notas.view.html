@@ -1,15 +1,17 @@
 <section>
-  <h2>Reflexión personal</h2>
+  <h2>Mis Reflexiones</h2>
   <form id="nota-form">
-    <textarea id="texto-nota" placeholder="¿Qué estás sintiendo o pensando hoy?" required></textarea>
-    <select id="categoria-nota">
-      <option value="Emoción">Emoción</option>
-      <option value="Experiencia">Experiencia</option>
-      <option value="Pensamiento">Pensamiento</option>
-      <option value="Aprendizaje">Aprendizaje</option>
+    <input type="text" id="titulo-nota" placeholder="Título" required>
+    <textarea id="contenido-nota" placeholder="Escribe tu reflexión..." required></textarea>
+    <select id="tipo-nota">
+      <option value="Emociones">Emociones</option>
+      <option value="Experiencias">Experiencias</option>
+      <option value="Aprendizajes">Aprendizajes</option>
+      <option value="Pensamientos">Pensamientos</option>
       <option value="Autoconocimiento">Autoconocimiento</option>
     </select>
-    <button type="submit">Guardar nota</button>
+    <button type="submit">Guardar</button>
   </form>
+
   <div id="nota-lista"></div>
 </section>
