@@ -1,4 +1,22 @@
 <section>
-  <h2>Biblioteca de Conocimiento</h2>
-  <div id="recursos-lista"></div>
+  <h2>Recursos de Conocimiento</h2>
+  <form id="recurso-form">
+    <input type="text" id="titulo-recurso" placeholder="Título del recurso" required>
+    <select id="tipo-recurso">
+      <option value="Video">🎥 Video</option>
+      <option value="Libro">📖 Libro</option>
+      <option value="Audio">🎧 Audio</option>
+    </select>
+    <select id="tema-recurso">
+      <option value="Escritura">Escritura</option>
+      <option value="Historia">Historia</option>
+      <option value="Procesos Químicos">Procesos Químicos</option>
+      <option value="Mente Humana">Mente Humana</option>
+    </select>
+    <input type="url" id="enlace-recurso" placeholder="URL del recurso" required>
+    <textarea id="descripcion-recurso" placeholder="Descripción breve..." required></textarea>
+    <button type="submit">Agregar recurso</button>
+  </form>
+
+  <div id="recurso-lista"></div>
 </section>
