@@ -1,5 +1,4 @@
-// 🧱 BLOQUE 2 – home.js
-
+// chupame la cajeta
 // Simula una carga de energía diaria (0 a 100%)
 function cargarEnergia() {
   const energia = Math.floor(Math.random() * 61) + 40; // valor entre 40 y 100
