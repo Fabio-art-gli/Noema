@@ -1,0 +1,30 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Empyria SPA</title>
+  
+  <!-- Tipografías futuristas -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  
+  <!-- Estilos base -->
+  <link rel="stylesheet" href="base.css" />
+
+  <!-- Íconos modernos: Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body style="margin: 0; font-family: 'Inter', sans-serif;">
+  
+  <!-- Contenedor raíz donde se cargan las vistas dinámicamente -->
+  <div id="app"></div>
+
+  <!-- Inicialización de Firebase con módulos modernos -->
+  <script src="firebase.js" type="module"></script>
+  
+  <!-- Scripts principales -->
+  <script src="components.js" defer></script>
+  <script src="main.js" type="module"></script>
+</body>
+</html>

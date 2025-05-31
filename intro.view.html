@@ -1,0 +1,103 @@
+<!-- 🌟 intro.view.html – Introducción Deslizante de Empyria -->
+<section class="intro-section">
+  <div id="intro-slider" class="slide-container">
+    <!-- Slide 1 -->
+    <div class="slide">
+      <div class="slide-content">
+        <h2>✨ BIENVENIDO A EMPYRIA</h2>
+        <p class="intro-text">¡Empieza a organizar tu rutina de manera simple pero perfecta con Empyria!</p>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <div class="slide-content">
+        <h2>🛠️ ¡Crea tu Rutina!</h2>
+        <p class="intro-text">Solo tienes que crear tus hábitos y comenzar a progresar, nuestro sistema se encargará de todo.</p>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <div class="slide-content">
+        <h2>📈 Progreso Imparable</h2>
+        <p class="intro-text">Con nuestro sistema de estadísticas y logros podrás medir tu progreso de manera eficiente.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controles de Navegación -->
+  <div class="intro-controls">
+    <button id="btn-omitir" class="btn btn-secondary">Omitir</button>
+    <span id="slide-indicator">1 / 3</span>
+    <button id="btn-siguiente" class="btn btn-primary">Siguiente</button>
+  </div>
+</section>
+
+<style>
+  .intro-section {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-bg);
+    position: relative;
+    overflow: hidden;
+    color: var(--color-text-primary);
+  }
+
+  .slide-container {
+    display: flex;
+    width: 300vw;
+    height: 100vh;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .slide {
+    flex: 0 0 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-bg);
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .slide-content {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .slide h2 {
+    font-size: 2.2rem;
+    color: var(--color-accent-primary);
+    margin-bottom: 16px;
+  }
+
+  .intro-text {
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .intro-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+  }
+
+  #slide-indicator {
+    font-weight: bold;
+    color: var(--color-text-secondary);
+  }
+
+  .bottom-nav {
+    display: none !important;
+  }
+</style>
