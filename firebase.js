@@ -22,12 +22,3 @@ console.log("🔥 Firebase inicializado correctamente (PRIVATE)");
 
 export { app, db, auth };
 
-{
-  "titulo": "Introducción a la escritura narrativa",
-  "descripcion": "Curso básico para aprender storytelling",
-  "categoria": "Escritura",
-  "tipo": "video", // puede ser 'video', 'audio', 'libro'
-  "enlace": "https://url-del-recurso.mp4",
-  "fecha": "timestamp"
-}
-
