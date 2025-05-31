@@ -1,67 +1,67 @@
-document.addEventListener("DOMContentLoaded", () => {
+
+      document.addEventListener("DOMContentLoaded", () => {
   const objetivoForm = document.getElementById("objetivo-form");
   const objetivoLista = document.getElementById("objetivo-lista");
 
-  const db = firebase.firestore();
-  const objetivosRef = db.collection("objetivos");
+  function obtenerObjetivos() {
+    return JSON.parse(localStorage.getItem("objetivos")) || [];
+  }
 
-  // Cargar metas
-  function cargarObjetivos() {
+  function guardarObjetivos(objetivos) {
+    localStorage.setItem("objetivos", JSON.stringify(objetivos));
+  }
+
+  function renderObjetivos() {
+    const objetivos = obtenerObjetivos();
     objetivoLista.innerHTML = "";
-    objetivosRef.orderBy("fecha", "desc").onSnapshot(snapshot => {
-      snapshot.forEach(doc => {
-        const objetivo = doc.data();
-        const item = document.createElement("div");
-        item.className = "objetivo-item";
-        item.innerHTML = `
-          <h3 class="${objetivo.completado ? 'completado' : ''}">${objetivo.titulo}</h3>
-          <p>${objetivo.descripcion}</p>
-          <small>Fecha objetivo: ${new Date(objetivo.fecha.toDate()).toLocaleDateString()}</small><br>
-          <button class="completar" data-id="${doc.id}">${objetivo.completado ? 'Reactivar' : 'Completar'}</button>
-          <button class="borrar" data-id="${doc.id}">Eliminar</button>
-        `;
-        objetivoLista.appendChild(item);
-      });
 
-      // Eventos: completar o eliminar
-      document.querySelectorAll(".completar").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const id = btn.dataset.id;
-          const actual = objetivosRef.doc(id);
-          actual.get().then(doc => {
-            actual.update({ completado: !doc.data().completado });
-          });
-        });
-      });
-
-      document.querySelectorAll(".borrar").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const id = btn.dataset.id;
-          objetivosRef.doc(id).delete();
-        });
-      });
+    objetivos.forEach((obj, index) => {
+      const item = document.createElement("div");
+      item.className = "objetivo-item";
+      item.innerHTML = `
+        <h3 class="${obj.completado ? 'completado' : ''}">${obj.titulo}</h3>
+        <p>${obj.descripcion}</p>
+        <small>Fecha objetivo: ${new Date(obj.fecha).toLocaleDateString()}</small><br>
+        <button onclick="completarObjetivo(${index})">${obj.completado ? 'Reactivar' : 'Completar'}</button>
+        <button onclick="eliminarObjetivo(${index})">Eliminar</button>
+      `;
+      objetivoLista.appendChild(item);
     });
   }
 
-  // Guardar nueva meta
+  window.completarObjetivo = function(index) {
+    const objetivos = obtenerObjetivos();
+    objetivos[index].completado = !objetivos[index].completado;
+    guardarObjetivos(objetivos);
+    renderObjetivos();
+  };
+
+  window.eliminarObjetivo = function(index) {
+    const objetivos = obtenerObjetivos();
+    objetivos.splice(index, 1);
+    guardarObjetivos(objetivos);
+    renderObjetivos();
+  };
+
   objetivoForm.addEventListener("submit", e => {
     e.preventDefault();
+    const titulo = document.getElementById("titulo-objetivo").value;
+    const descripcion = document.getElementById("descripcion-objetivo").value;
+    const fecha = document.getElementById("fecha-objetivo").value;
 
-    const titulo = objetivoForm["titulo-objetivo"].value;
-    const descripcion = objetivoForm["descripcion-objetivo"].value;
-    const fecha = new Date(objetivoForm["fecha-objetivo"].value);
+    const nuevaMeta = {
+      titulo,
+      descripcion,
+      fecha,
+      completado: false
+    };
 
-    if (titulo && descripcion && fecha) {
-      objetivosRef.add({
-        titulo,
-        descripcion,
-        fecha,
-        completado: false
-      }).then(() => {
-        objetivoForm.reset();
-      });
-    }
+    const objetivos = obtenerObjetivos();
+    objetivos.push(nuevaMeta);
+    guardarObjetivos(objetivos);
+    objetivoForm.reset();
+    renderObjetivos();
   });
 
-  cargarObjetivos();
+  renderObjetivos();
 });
